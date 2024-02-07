@@ -50,4 +50,19 @@ describe("FoodAdmFacade test", () => {
     expect(food.purchasePrice).toBe(input.purchasePrice);
     expect(food.stock).toBe(input.stock);
   });
+
+  it("Should check foood stock", async () => {
+    const foodFacade = FoodAdmFacadeFactory.create();
+    const input = {
+      id: "1",
+      name: "Pizza",
+      purchasePrice: 70,
+      stock: 10,
+    };
+    await foodFacade.addFood(input);
+    const result = await foodFacade.checkStock({ foodId: "1" });
+
+    expect(result.foodId).toBe(input.id);
+    expect(result.stock).toBe(input.stock);
+  });
 });
