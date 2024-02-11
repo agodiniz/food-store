@@ -1,20 +1,21 @@
 import FindAllFoodsUseCase from "../usecase/find-all-foods/find-all-foods.usecase";
+import FindFoodUseCase from "../usecase/find-food/find-food.usecase";
 import {
-    FindAllDeliveryCatalogFacadeOutputDto,
+  FindAllDeliveryCatalogFacadeOutputDto,
   FindDeliveryCatalogFacadeInputDto,
   FindDeliveryCatalogFacadeOutputDto,
 } from "./delivery-catalog.facade.dto";
 import DeliveryCatalogFacadeInterface from "./delivery-catalog.interface";
 
 export interface UseCasesProps {
-  findUseCase: FindAllFoodsUseCase;
+  findUseCase: FindFoodUseCase;
   findAllUseCase: FindAllFoodsUseCase;
 }
 
 export default class DeliveryCatalogFacade
   implements DeliveryCatalogFacadeInterface
 {
-  private _findUseCase: FindAllFoodsUseCase;
+  private _findUseCase: FindFoodUseCase;
   private _findAllUseCase: FindAllFoodsUseCase;
 
   constructor(props: UseCasesProps) {
@@ -23,6 +24,7 @@ export default class DeliveryCatalogFacade
   }
 
   async find(
+    id: FindDeliveryCatalogFacadeInputDto
   ): Promise<FindDeliveryCatalogFacadeOutputDto> {
     return await this._findUseCase.execute(id);
   }

@@ -10,8 +10,8 @@ export default class DeliveryCatalogFacadeFactory {
         const findAllUseCase = new FindAllFoodsUseCase(foodRepository);
 
         const facade = new DeliveryCatalogFacade({
-            findUseCase,
-            findAllUseCase,
+            findUseCase: findUseCase,
+            findAllUseCase: findAllUseCase,
         });
         return facade;
     }

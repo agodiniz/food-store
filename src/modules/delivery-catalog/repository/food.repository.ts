@@ -17,7 +17,15 @@ export default class FoodRepository implements FoodGateway {
     );
   }
 
-  async find(id: string): Promise<Food[]> {
-    throw new Error("Method not implemented");
+  async find(id: string): Promise<Food> {
+    const food = await FoodModel.findOne({
+      where: { id: id },
+    });
+
+    return new Food({
+      id: new Id(food.id),
+      name: food.name,
+      salesPrice: food.salesPrice,
+    });
   }
 }
